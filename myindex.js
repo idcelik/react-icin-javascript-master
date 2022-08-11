@@ -76,3 +76,38 @@ console.log(birinciEleman);
 console.log(kalanElemanlar);
 
 // const[...ilkElemanlar, besinci]= sayilar; böyle bir kullanım söz konusu değil
+
+
+
+//Parameter Defaults(Varsayılan Parametre Değerleri)
+
+function topla4(sayi1,sayi2)
+{
+    return sayi1+sayi2; // 3 + undefined
+}
+console.log(topla4(3)); //İkinci parametre yazılmadığı için NaN(Not a Number) sonuç döner. 
+
+//bu sorunu aşmak için default değer ataması yapabiliriz.
+
+
+function topla5(sayi1,sayi2=1)
+{
+    return sayi1+sayi2; 
+}
+console.log(topla5(3)); // Default değer fonksiyonda 1 olarak girildiği için, eğer herhangi bir sayı girilmezse 1 olarak işleme sokar.
+
+
+// Bunu react'ta reducer olarak kullanabiliyoruz. Örnek olarak:
+
+const STATE_BASLANGICI ={yukleniyor:false,yazilar :[]};
+const reducer = (state =STATE_BASLANGICI,action)=>{ //state değeri başlangıç olarak STATE_BASLANGICI değeri atadık. Yani Sayfa ilk açıldığında herhangi bir 
+                                                    // yazı olmadan çalışacak. Biz herhangi bir şey eklediğimizde onu gösterecek.
+    //reducer detayları
+    return state;
+}
+
+
+
+
+
+
