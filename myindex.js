@@ -77,7 +77,7 @@ console.log(birinciEleman);
 console.log(kalanElemanlar);
 
 // const[...ilkElemanlar, besinci]= sayilar; böyle bir kullanım söz konusu değil
- 
+
 
 
 // 5- Parameter Defaults(Varsayılan Parametre Değerleri)
@@ -160,7 +160,7 @@ console.log(topla6(sayilarim));
 console.log(topla6.apply(null, sayilarim)); // bu şekilde yapılırsa ayırarak ekler ve çalışır.
 console.log(topla6(...sayilarim)); // ama en doğru şekli herhangi bir keyword olmadan spread ile yapmaktır. yine doğru sonucu  verir.
 
- 
+
 const sayilarim1 = [1, 2, 3];
 const sayilarim2 = [4, 5, 6];
 
@@ -181,14 +181,14 @@ doğruysa
 }else{
 yanlışsa
 }
-*/ 
+*/
 
 const koprununDurumu = "belirsiz";
 koprununDurumu === "acik" ? console.log("Köprü Açık") : console.log("Köprü Kapalı");  // Üç eşittir kullandığınızda iki değerin hem tipini hem de değerini karşılaştırır
 koprununDurumu == "kapali" ? console.log("Köprü Açık") : console.log("Köprü Kapalı"); // iki eşittir ise değerlerin tiplerini eşitleyerek sadece değer karşılaştırması yapar.
- 
+
 koprununDurumu === "acik" ? console.log("Köprü Açık") : koprununDurumu === "kapali" ? console.log("Köprü Kapalı") : console.log("Köprü Durumu Bilinmiyor.");
- 
+
 const nmbr = 1;
 nmbr ? console.log("sayi gecerli") : console.log("sayi gecersiz"); // sayi değerini kontrol eder true false olarak kontrol eder
 /*
@@ -199,3 +199,43 @@ NaN
 undefined*/
 const deger = { isim: "Deniz" };
 Object.keys(deger).length ? console.log("length") : console.log("length 2"); // sayi değerini kontrol eder true false olarak kontrol eder
+
+
+// 9- Array Methods( Dizi Methodları ) - .find() .some() .every()
+
+const urunler = [
+    { id: 1, name: "Kalem", fiyat: 5 },
+    { id: 2, name: "Defter", fiyat: 10 },
+    { id: 3, name: "Silgi", fiyat: 2 },
+    { id: 4, name: "Kalemtraş", fiyat: 7 },
+];
+
+// .find() sizin istediğiniz ürünü arar ve ilk bulduğunu size getirir. Başka varsa devamında ona bakmaz. İlk bulduğunu getirir ve biter.
+
+console.log('Find :', urunler.find((urun) => urun.fiyat > 5)); // fiyatı 5 den büyük olanları istedik ama bize sadece Defter'i getirdi. Aslında Kalemtraş da vardı.
+// Ama dediğimiz gibi ilk bulduğnu getirir.
+
+
+// .some() koşulu sağlayan eleman dizide bulunuyorsa true döner, bulunmuyorsa false döner. 
+console.log('Some :', urunler.some((urun) => urun.fiyat > 5));
+
+// .every koşulu dizide ki bütün elemanların bu şartı sağlayıp sağlamadığına bakıp, ona göre sonuç dönecek. örnek fiyat 5 den büyük diye sorduğumuzda,
+// fiyatı 2 olan da olduğundan false döner.
+
+console.log('Every :', urunler.every((urun) => urun.fiyat > 5));
+
+
+// 10- ESModules (ES Moduülleri)
+
+import { isim as nm, kullanici as usr, merhaba } from './source.js' // eğer alınan objeleri veya değişkenleri farklı isimlendirme olarak almak istiyorsak as ile yeni isim veririz.
+
+//import merhaba from './defaultsource.js'; // direkt olarak tek default export ise böyle alınır.
+
+import { default as merhaba, kullanici as kllnc } from './source.js';
+
+export { default as merhaba } from './source.js'; // bu şekilde ki exot kullanımı defaultsource den geleni dışarı aktar demek
+export { kullanici, isim } from './source.js';
+export * from './source.js'; // bu kullanım ise gelen her şeyi dışarı aktar demek
+
+
+
