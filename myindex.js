@@ -251,8 +251,40 @@ console.log(model.includes("opel")); // false döner
 //bu sorunu çözmek için hepsi küçük veya büyük şekilde kontrol edilebilir.
 
 //toLowerCase()
-const yeniModel="Audi";
+const yeniModel = "Audi";
 
 console.log(yeniModel.toLowerCase().includes("audi"));
 
 console.log(yeniModel.toUpperCase().includes("AUDI"));
+
+
+
+// 12- Array Methods(Dizi Methodları)
+//.map()  // yeni dizi oluşturur
+
+const yeniUrunler = [
+    { id: 1, name: "Kalem", fiyat: 5 },
+    { id: 2, name: "Defter", fiyat: 10 },
+    { id: 3, name: "Silgi", fiyat: 2 },
+    { id: 4, name: "Kalemtraş", fiyat: 7 },
+];
+
+console.log(
+    yeniUrunler.map(urun => `${urun.name} fiyatı ${urun.fiyat} liradır.`)
+);
+
+const urunOlusturucu = (urun) => `${urun.name} fiyatı ${urun.fiyat} liradır.`;
+
+
+console.log(
+    yeniUrunler.map(urunOlusturucu)
+);
+
+
+function urunGoster({ urunListesi }) {
+    return urunListesi.map(urun => <li key={urun.id}>{urun.adi} fiyatı {urun.fiyat} liradır.</li>) //   reactta bu şekilde ürün listelemesi yapabiliriz.
+}
+
+function urunGoster({ urunListesi }) {
+    return urunListesi.map((urun, index) => <li key={index}>{urun.adi} fiyatı {urun.fiyat} liradır.</li>) //   eğer alabileceğiniz key yoksa index ile de alabilirsiniz.index eleman sırasını verir.
+}
