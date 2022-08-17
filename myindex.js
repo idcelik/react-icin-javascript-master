@@ -206,7 +206,10 @@ Object.keys(deger).length ? console.log("length") : console.log("length 2"); // 
 const urunler = [
     { id: 1, name: "Kalem", fiyat: 5 },
     { id: 2, name: "Defter", fiyat: 10 },
-    { id: 3, name: "Silgi", fiyat: 2 },
+    {
+        id: 3,
+        name: "Silgi", fiyat: 2
+    },
     { id: 4, name: "Kalemtraş", fiyat: 7 },
 ];
 
@@ -226,7 +229,7 @@ console.log('Every :', urunler.every((urun) => urun.fiyat > 5));
 
 
 // 10- ESModules (ES Moduülleri)
-
+/*
 import { isim as nm, kullanici as usr, merhaba } from './source.js' // eğer alınan objeleri veya değişkenleri farklı isimlendirme olarak almak istiyorsak as ile yeni isim veririz.
 
 //import merhaba from './defaultsource.js'; // direkt olarak tek default export ise böyle alınır.
@@ -236,6 +239,20 @@ import { default as merhaba, kullanici as kllnc } from './source.js';
 export { default as merhaba } from './source.js'; // bu şekilde ki exot kullanımı defaultsource den geleni dışarı aktar demek
 export { kullanici, isim } from './source.js';
 export * from './source.js'; // bu kullanım ise gelen her şeyi dışarı aktar demek
+*/
 
+// 11- Array Methods (Dizi Methodları)
+//.includes() // dizinin içinde olup olmadığını kontrol eder büyük küçük harf duyarlılığı vardır
 
+const model = "Opel";
 
+console.log(model.includes("Op")); //true döner
+console.log(model.includes("opel")); // false döner
+//bu sorunu çözmek için hepsi küçük veya büyük şekilde kontrol edilebilir.
+
+//toLowerCase()
+const yeniModel="Audi";
+
+console.log(yeniModel.toLowerCase().includes("audi"));
+
+console.log(yeniModel.toUpperCase().includes("AUDI"));
