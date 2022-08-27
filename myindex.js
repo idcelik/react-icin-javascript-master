@@ -280,7 +280,7 @@ console.log(
     yeniUrunler.map(urunOlusturucu)
 );
 
-
+/*
 function urunGoster({ urunListesi }) {
     return urunListesi.map(urun => <li key={urun.id}>{urun.adi} fiyatı {urun.fiyat} liradır.</li>) //   reactta bu şekilde ürün listelemesi yapabiliriz.
 }
@@ -288,3 +288,97 @@ function urunGoster({ urunListesi }) {
 function urunGoster({ urunListesi }) {
     return urunListesi.map((urun, index) => <li key={index}>{urun.adi} fiyatı {urun.fiyat} liradır.</li>) //   eğer alabileceğiniz key yoksa index ile de alabilirsiniz.index eleman sırasını verir.
 }
+*/
+
+
+// 13- Array Methods(Dizi Methodları)
+//.filter()  // basit bir koşul kontrolu yapıyor, false dönenler elenir, true dönenleri verir
+const yeniUrunler2 = [
+    { id: 1, name: "Kalem", fiyat: 5 },
+    { id: 2, name: "Defter", fiyat: 10 },
+    { id: 3, name: "Silgi", fiyat: 2 },
+    { id: 4, name: "Kalemtraş", fiyat: 7 },
+];
+
+console.log(yeniUrunler2.filter((urun) => urun.fiyat > 5));
+console.log(
+    yeniUrunler2
+        .filter(urun => urun.name.toLowerCase().includes("kalem".toLowerCase()))
+        .map(urun => `${urun.name} fiyati 5'ten büyüktür.`)
+);
+
+
+// 14- Array Methods(Dizi Methodları)
+//.reduce()  // verilen dizinin elemanları üzerinde callback fonk. işlevi görür, döndükçe bir sonrakine hatırlatır
+//Verilen dizinin elemanları üzerinde, reducer olarak verilen callback fonksiyonu uygular. Bu fonksiyonun döndürdüğü sonuç her bir döngüde hatırlanır
+// ve bir sonraki döndürülen sonuç bir öncekine eklenir. Reducer fonksiyonu dört adet parametre alır: accumulator 
+//(her döngüden çıkan sonucun toplandığı değer), current value (sırası gelen dizi değeri), current index (sırası gelen değerin dizideki konumu), 
+// ve source array (üzerinde reduce uygulanan dizi.)
+
+const yeniUrunler3 = [
+    { id: 1, name: "Kalem", fiyat: 5 },
+    { id: 2, name: "Defter", fiyat: 10 },
+    { id: 3, name: "Silgi", fiyat: 2 },
+    { id: 4, name: "Kalemtraş", fiyat: 7 },
+];
+
+const toplamUrunFiyati = yeniUrunler3.reduce((toplam, urun) => toplam = toplam + urun.fiyat, 0);
+console.log({ toplamUrunFiyati });  //reduce dönerek ürünlerin fiyatlarını toplar sonucu 24 olarak yazar.
+
+
+const toplamString = yeniUrunler3.reduce(
+    (toplam, urun) => (toplam = `${toplam} ${urun.name}`),
+    'Urun Isimleri:'
+);
+console.log({ toplamString });
+
+
+const toplamDizi = yeniUrunler3.reduce(
+    (toplam, urun) => (toplam = [...toplam, urun.name]),
+    []
+);
+
+console.log({ toplamDizi });
+
+const toplamDizi2 = yeniUrunler3.map((urun) => urun.name);
+console.log({ toplamDizi });
+
+
+
+// 15- Promises and async/await
+//promise sonuuc olumlu veya olumsuz olarak gelecekte belli olacak bir işlemi ifader eder. bi kaynağa bağlanıp ne zaman veri alınacağı belli olmayan şeyler, 
+// Ayrıca promise oluşunca callstack in en sonuna atılır. böylelikle diğer işlemler bloklanmadan çalışır ve callstack ne zaman sonuçlanırsa, promises da o zaman sonuçlanır.
+//bunlara eş zamanlı olmayan işlemler denir.
+
+const veriGetir = new Promise((resolveBasarili, rejectBasarisiz) => {
+    const veriGeldiMi = false;
+    if (veriGeldiMi) {
+        resolveBasarili("Verimiz Burada.");
+    } else {
+        rejectBasarisiz("Veriyi Alamadık.");
+    }
+});//eğer olumlu sonuçlanırsa resolve içine, olumsuz sonuçlanırsa reject in içine gider
+
+
+veriGetir
+    .then(cevap => console.log('Gelen Cevap: ', cevap)) // olumlu ise
+    .catch(hata => console.log('Gelen Cevap: ', hata))  // olumsuz ise
+
+
+const axios = require("axios");
+//https://restcountries.com/v3.1/all
+
+// function ulkeGetir() {z
+//  axios
+//       .get("https://restcountries.com/v3.1/all")
+//       .then(response => console.log(response.data[0]))
+//       .catch(err => console.log(err))
+
+// }
+// ulkeGetir();
+
+async function ulkeGetir() {
+    const ulkeListesi = await axios.get('https://restcountries.com/v3.1/all'); //kullanılabilmesi için fonk async olması gerekir
+    console.log(ulkeListesi.data[0]);
+}
+ulkeGetir();
