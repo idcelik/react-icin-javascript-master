@@ -1,0 +1,21 @@
+{
+  "name": "react-icin-javascript-master",
+  "version": "1.0.0",
+  "description": "projem",
+  "main": "deniz",
+  "scripts": {
+    "test": "deniz test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "idcelik"
+  },
+  "keywords": [
+    "jsreact"
+  ],
+  "author": "idcelik",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
